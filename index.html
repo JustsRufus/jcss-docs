@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>JCSS — Just Coding with Stylesheet Structure</title>
     <!-- Fonts & Icons -->
+     <link rel="shortcut icon" href="icon.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
@@ -364,7 +365,10 @@
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">JCSS</div>
+            <div class="logo" style="display: flex; gap: 2vh; transform: translateY(2px);">
+                <img src="JCSS - logo.png" alt="" style="width: 36px; height: 36px; transform: translateY(-2px);">
+                JCSS
+            </div>
             <div class="nav-links">
                 <a href="#introduction">Présentation</a>
                 <a href="#installation">Installation</a>
@@ -381,7 +385,7 @@
             <div class="hero-content">
                 <span class="badge"><i class="fas fa-code"></i> DSL — Frontend unifié</span>
                 <h1>JCSS<br>Just Coding with Stylesheet Structure</h1>
-                <p class="section-subhead">Un langage déclaratif orienté style qui génère automatiquement du HTML, CSS et JavaScript à partir d’une syntaxe unique. Supprimez l’écriture manuelle du HTML, accélérez le développement front-end.</p>
+                <p class="section-subhead">Un DSL orienté style qui génère automatiquement du HTML, CSS et JavaScript à partir d’une syntaxe unique. Supprimez l’écriture manuelle du HTML, accélérez le développement front-end.</p>
                 <div class="btn-group">
                     <a href="#installation" class="btn btn-primary"><i class="fas fa-download"></i> Installer JCSS</a>
                     <a href="#exemple" class="btn btn-outline"><i class="fas fa-code"></i> Voir un exemple</a>
