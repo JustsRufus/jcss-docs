@@ -2,490 +2,601 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JCSS — Unify Style & Structure</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>JCSS — Just Coding with Stylesheet Structure</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        body {
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #ffffff;
-            color: #1e2c3a;
-            line-height: 1.5;
+        html {
             scroll-behavior: smooth;
         }
-
-        /* Node.js inspired color palette */
-        :root {
-            --primary: #2e6b3e;
-            --primary-dark: #1f4a2c;
-            --primary-light: #e8f0e8;
-            --accent: #026e00;
-            --gray-50: #f9fafb;
-            --gray-100: #f1f5f9;
-            --gray-200: #e2e8f0;
-            --gray-300: #cbd5e1;
-            --gray-600: #475569;
-            --gray-800: #1e293b;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #ffffff;
+            color: #1d1d1f;
+            line-height: 1.5;
         }
 
         /* Typography */
-        h1 {
-            font-size: 3rem;
-            font-weight: 800;
+        h1, h2, h3, h4 {
+            font-weight: 600;
             letter-spacing: -0.02em;
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-            background-clip: text;
+        }
+
+        h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #1d1d1f 0%, #2d4a6e 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             color: transparent;
+            margin-bottom: 1.5rem;
         }
 
         h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-            color: var(--gray-800);
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            border-left: 5px solid var(--primary);
-            padding-left: 1rem;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            border-bottom: 2px solid #e8e8ed;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+            position: relative;
+        }
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 40%;
+            height: 2px;
+            background: linear-gradient(90deg, #0066cc, #8ba8c5);
+            border-radius: 2px;
         }
 
         h3 {
             font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
             font-weight: 600;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-            color: #0f2b3b;
+            color: #1d1d1f;
         }
 
-        a {
-            text-decoration: none;
-            color: var(--primary);
-            transition: color 0.2s;
-        }
-
-        a:hover {
-            color: var(--primary-dark);
+        .section-subhead {
+            font-size: 1.25rem;
+            color: #6e6e73;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            max-width: 800px;
         }
 
         /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar */
         .navbar {
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--gray-200);
             position: sticky;
             top: 0;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
             z-index: 100;
-            padding: 0.75rem 2rem;
+            padding: 1rem 0;
+        }
+        .nav-container {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
-        }
-
-        .logo {
-            font-size: 1.6rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #1f4a2c, #2e6b3e);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            font-weight: 500;
-        }
-
-        .nav-links a {
-            color: var(--gray-600);
-            transition: 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .container {
-            max-width: 1280px;
+            align-items: center;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
         }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(120deg, #1d1d1f, #2d4a6e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            font-size: 0.95rem;
+            position: relative;
+        }
+        .nav-links a:hover {
+            color: #0066cc;
+        }
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #0066cc;
+            transition: width 0.2s ease;
+        }
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2rem; }
+        }
 
+        /* Hero */
         .hero {
-            text-align: center;
-            padding: 4rem 1rem 3rem;
-            background: linear-gradient(145deg, #ffffff 0%, #f8fdf8 100%);
-            border-bottom: 1px solid var(--gray-200);
+            padding: 6rem 0 5rem;
+            background: linear-gradient(135deg, #fbfbfd 0%, #f5f7fa 100%);
+            border-bottom: 1px solid #eef2f5;
+            position: relative;
+            overflow: hidden;
         }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--gray-600);
-            max-width: 700px;
-            margin: 1rem auto 2rem;
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 70%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(0,102,204,0.03) 0%, transparent 70%);
+            pointer-events: none;
         }
-
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
+        }
         .badge {
-            background: var(--primary-light);
-            color: var(--primary-dark);
-            border-radius: 40px;
-            padding: 0.25rem 1rem;
-            font-size: 0.85rem;
-            font-weight: 600;
             display: inline-block;
+            background: linear-gradient(135deg, #e8f0fe, #d9e4f5);
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #0066cc;
             margin-bottom: 1rem;
+            width: fit-content;
+            border: 1px solid rgba(0,102,204,0.15);
         }
-
         .btn-group {
             display: flex;
             gap: 1rem;
-            justify-content: center;
             flex-wrap: wrap;
+            margin: 2rem 0 1rem;
         }
-
         .btn {
-            display: inline-block;
-            background-color: white;
-            border: 1px solid var(--gray-300);
-            padding: 0.7rem 1.6rem;
-            border-radius: 2rem;
-            font-weight: 600;
-            transition: all 0.2s;
-            color: var(--gray-800);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            border-radius: 48px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            font-size: 1rem;
         }
-
         .btn-primary {
-            background-color: var(--primary);
-            border-color: var(--primary);
+            background: #0066cc;
             color: white;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0,102,204,0.2);
         }
-
         .btn-primary:hover {
-            background-color: var(--primary-dark);
-            border-color: var(--primary-dark);
+            background: #0055aa;
             transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,102,204,0.25);
         }
-
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #d2d2d7;
+            color: #1d1d1f;
+        }
         .btn-outline:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            transform: translateY(-2px);
+            background: #f5f5f7;
+            border-color: #0066cc;
+            color: #0066cc;
         }
 
-        /* Code blocks */
-        pre {
-            background: #1e2c3a;
-            color: #e2e8f0;
-            padding: 1.2rem;
-            border-radius: 1rem;
-            overflow-x: auto;
-            font-family: 'SF Mono', 'Fira Code', monospace;
-            font-size: 0.85rem;
-            line-height: 1.45;
-            margin: 1.5rem 0;
-            box-shadow: var(--shadow-sm);
-        }
-
-        code {
-            font-family: 'SF Mono', monospace;
-            background: var(--gray-100);
-            padding: 0.2rem 0.4rem;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            color: #1f4a2c;
-        }
-
-        pre code {
-            background: none;
-            color: inherit;
-            padding: 0;
-        }
-
-        .grid-2 {
+        /* Cards & Grid */
+        .grid-2, .grid-3 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             margin: 2rem 0;
         }
-
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+        }
         .card {
-            background: white;
-            border: 1px solid var(--gray-200);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            transition: box-shadow 0.2s;
-            box-shadow: var(--shadow-sm);
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 1.8rem;
+            border: 1px solid #eef2f5;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
         }
-
         .card:hover {
-            box-shadow: var(--shadow-md);
+            border-color: #d0e2f0;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.04);
+            transform: translateY(-2px);
         }
-
-        .card h3 {
-            margin-top: 0;
+        .card i {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #0066cc, #2d7f9e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+        .card h4 {
+            font-size: 1.35rem;
             margin-bottom: 0.75rem;
+            color: #1d1d1f;
+        }
+        .card p, .card li {
+            color: #6e6e73;
+            font-size: 0.95rem;
         }
 
+        /* Code blocks */
+        .code-block {
+            background: #1a262f;
+            color: #eef4fc;
+            border-radius: 20px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-family: 'SF Mono', 'Menlo', monospace;
+            font-size: 0.85rem;
+            line-height: 1.45;
+            margin: 1.5rem 0;
+            border-left: 4px solid #0066cc;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .code-block pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .inline-code {
+            background: #f0f3f8;
+            padding: 0.2rem 0.5rem;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: #0066cc;
+            font-weight: 500;
+        }
+
+        /* Section spacing */
+        section {
+            padding: 5rem 0;
+            border-bottom: 1px solid #f0f2f5;
+        }
         footer {
-            background: var(--gray-50);
-            border-top: 1px solid var(--gray-200);
+            background: #fafcff;
+            padding: 3rem 0;
             text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-            color: var(--gray-600);
+            color: #86868b;
+            font-size: 0.85rem;
+            border-top: 1px solid #eef2f5;
         }
-
-        .directive-table {
-            width: 100%;
-            border-collapse: collapse;
+        .directive-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
             margin: 1.5rem 0;
         }
-
-        .directive-table th, .directive-table td {
-            border: 1px solid var(--gray-200);
-            padding: 0.75rem;
-            text-align: left;
-        }
-
-        .directive-table th {
-            background: var(--gray-100);
+        .directive-tag {
+            background: linear-gradient(135deg, #f0f4fa, #e8eff5);
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-family: monospace;
             font-weight: 600;
+            font-size: 0.85rem;
+            color: #0066cc;
+            border: 1px solid rgba(0,102,204,0.2);
+            transition: all 0.2s;
         }
-
-        .toc {
-            background: var(--gray-50);
-            border-radius: 1rem;
-            padding: 1rem 1.5rem;
-            margin: 2rem 0;
-            border-left: 4px solid var(--primary);
+        .directive-tag:hover {
+            background: #0066cc;
+            color: white;
+            border-color: #0066cc;
         }
-
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 0.8rem;
-                padding: 1rem;
-            }
-            h1 {
-                font-size: 2.2rem;
-            }
-            .container {
-                padding: 0 1rem;
-            }
+        hr {
+            margin: 1rem 0;
+            border: none;
+            border-top: 1px solid #e8eef3;
+        }
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1d1d1f;
+        }
+        /* accent borders */
+        .accent-text {
+            color: #0066cc;
+        }
+        .btn-outline i, .btn-primary i {
+            color: inherit;
+        }
+        .gradient-bg-light {
+            background: linear-gradient(120deg, #f9fbfe, #ffffff);
+        }
+        /* extra flair */
+        .pill-highlight {
+            background: #eef3fc;
+            border-radius: 30px;
+            padding: 0.2rem 0.7rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #0066cc;
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">⚡ JCSS</div>
-        <div class="nav-links">
-            <a href="#intro">Introduction</a>
-            <a href="#install">Installation</a>
-            <a href="#directives">Directives</a>
-            <a href="#workflow">Workflow</a>
-            <a href="#examples">Exemples</a>
+        <div class="nav-container">
+            <div class="logo">JCSS</div>
+            <div class="nav-links">
+                <a href="#introduction">Présentation</a>
+                <a href="#installation">Installation</a>
+                <a href="#getting-started">Démarrage</a>
+                <a href="#syntaxe">Syntaxe</a>
+                <a href="#workflow">Workflow</a>
+                <a href="#exemple">Exemple</a>
+            </div>
         </div>
     </nav>
 
     <div class="hero">
-        <div class="badge">v0.9 — Open Source</div>
-        <h1>JCSS · Style & Structure unifiés</h1>
-        <p>Écrivez vos interfaces web en une seule syntaxe inspirée du CSS. <br> Générez automatiquement HTML, CSS et JavaScript.</p>
-        <div class="btn-group">
-            <a href="#install" class="btn btn-primary">⚡ Commencer</a>
-            <a href="#examples" class="btn btn-outline">📖 Voir les exemples</a>
-            <a href="https://github.com/rufus-lokuma/jcss" class="btn btn-outline">GitHub</a>
+        <div class="container">
+            <div class="hero-content">
+                <span class="badge"><i class="fas fa-code"></i> DSL — Frontend unifié</span>
+                <h1>JCSS<br>Just Coding with Stylesheet Structure</h1>
+                <p class="section-subhead">Un langage déclaratif orienté style qui génère automatiquement du HTML, CSS et JavaScript à partir d’une syntaxe unique. Supprimez l’écriture manuelle du HTML, accélérez le développement front-end.</p>
+                <div class="btn-group">
+                    <a href="#installation" class="btn btn-primary"><i class="fas fa-download"></i> Installer JCSS</a>
+                    <a href="#exemple" class="btn btn-outline"><i class="fas fa-code"></i> Voir un exemple</a>
+                    <a href="https://github.com/rufus-lokuma/jcss" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <span class="pill-highlight"><i class="fas fa-check-circle"></i> v1.0 stable</span>
+                    <span class="pill-highlight" style="margin-left: 0.5rem;"><i class="fas fa-window-maximize"></i> Windows ready</span>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="container">
-        <!-- Introduction -->
-        <section id="intro">
-            <h2>Pourquoi JCSS ?</h2>
-            <p>JCSS est un DSL (Domain-Specific Language) qui supprime la double écriture HTML/CSS. Vous écrivez du style structuré, le moteur génère des pages web complètes, valides et prêtes à l'emploi. Fini la dissociation entre la structure et l'apparence visuelle.</p>
+    <div class="container sections">
+        <!-- Présentation générale -->
+        <section id="introduction">
+            <h2>Présentation générale</h2>
+            <p class="section-subhead">JCSS est un DSL qui réinvente le workflow front-end en faisant du style le point d'entrée unique.</p>
             <div class="grid-2">
                 <div class="card">
-                    <h3>🎯 Productivité accrue</h3>
-                    <p>Pas besoin de jongler entre fichiers .html et .css. Une seule source de vérité, une seule syntaxe.</p>
+                    <i class="fas fa-paint-brush"></i>
+                    <h4>Unification structure & style</h4>
+                    <p>Plus de double écriture HTML/CSS. Vous décrivez l'interface avec une syntaxe proche du CSS, le moteur génère le HTML, le CSS et le JavaScript conformes aux standards W3C.</p>
                 </div>
                 <div class="card">
-                    <h3>🧠 Ergonomie cognitive</h3>
-                    <p>Réduit la charge mentale grâce à l'imbrication naturelle et aux règles unifiées.</p>
+                    <i class="fas fa-rocket"></i>
+                    <h4>Productivité accrue</h4>
+                    <p>Réduit la redondance et la charge cognitive. Idéal pour le prototypage rapide et les projets front-end de taille modérée.</p>
                 </div>
                 <div class="card">
-                    <h3>⚡ Génération rapide</h3>
-                    <p>Mode watch intégré : modifiez votre fichier .jcss, le HTML/CSS/JS est regénéré instantanément.</p>
+                    <i class="fas fa-globe"></i>
+                    <h4>100% compatible</h4>
+                    <p>Génère du HTML/CSS standard. Utilisable avec n'importe quel serveur web, et extensible avec des bibliothèques comme Tailwind ou Bootstrap via la directive @meta.</p>
                 </div>
                 <div class="card">
-                    <h3>🌐 100% standards web</h3>
-                    <p>Sortie HTML5, CSS3 et JavaScript valides. Compatible avec tout navigateur moderne.</p>
+                    <i class="fas fa-language"></i>
+                    <h4>Syntaxe inspirée du CSS</h4>
+                    <p>Imbrication naturelle, sélecteurs, propriétés additionnelles comme <span class="inline-code">text</span>, <span class="inline-code">dimension</span> ou <span class="inline-code">axe</span> pour une ergonomie maximale.</p>
                 </div>
+            </div>
+            <div class="card" style="margin-top: 1rem; background: linear-gradient(135deg, #ffffff, #fafdff);">
+                <h4><i class="fas fa-chart-simple"></i> Différences clés</h4>
+                <ul style="margin-left: 1.5rem; color: #4a5568;">
+                    <li><strong class="accent-text">CSS</strong> → nécessite du HTML préalable ; <strong>JCSS</strong> génère HTML automatiquement.</li>
+                    <li><strong class="accent-text">Tailwind</strong> → travaille sur une structure HTML existante ; <strong>JCSS</strong> supprime l’écriture manuelle du HTML.</li>
+                    <li><strong class="accent-text">Sass/Less</strong> → enrichissent CSS mais ne génèrent pas de structure ; <strong>JCSS</strong> produit des pages entières.</li>
+                </ul>
             </div>
         </section>
 
         <!-- Installation -->
-        <section id="install">
-            <h2>📦 Installation</h2>
-            <div class="toc">
-                <strong>Prérequis :</strong> Node.js (n'importe quelle version récente). <br>
-                <strong>Plateforme :</strong> Windows ✅ · macOS (bientôt) · Linux (bientôt)
+        <section id="installation">
+            <h2>Installation</h2>
+            <p class="section-subhead">Prérequis : Node.js (version récente). Actuellement supporté sur Windows (macOS et Linux en roadmap).</p>
+            <div class="code-block">
+                <pre><i class="fas fa-terminal" style="color:#8ba8c5"></i> npm install -g @rufus_lokuma/jcss</pre>
             </div>
-            <pre><code>npm install -g @rufus_lokuma/jcss</code></pre>
             <p>Vérifiez l'installation :</p>
-            <pre><code>jcss -v</code></pre>
-            <p>JCSS fonctionne immédiatement sans fichier de configuration initiale. Créez un dossier pour votre projet :</p>
-            <pre><code>mkdir mon-app-jcss
-cd mon-app-jcss
-jcss init</code></pre>
-            <p>La commande <code>jcss init</code> génère l'arborescence suivante :</p>
-            <pre><code>mon-app-jcss/
-├── index.jcss              # point d'entrée principal
-├── modules/
-    ├── README
-    ├── app/                # (créé à la compilation) fichiers HTML/CSS/JS générés
-    └── resources/
-        ├── fonts/
-        ├── imports/        # autres fichiers .jcss à importer
-        ├── medias/
-        └── external/       # fichiers HTML, CSS, JS externes</code></pre>
-            <p>Si le projet existe déjà, <code>jcss init</code> exécute immédiatement le code présent dans <code>index.jcss</code>.</p>
+            <div class="code-block">
+                <pre>jcss -v</pre>
+            </div>
+            <p>Pas de fichier de configuration initiale requis. L'installation globale permet d'utiliser la commande <span class="inline-code">jcss</span> dans votre terminal.</p>
+            <div style="background: #eef3fc; border-radius: 20px; padding: 1rem 1.5rem; margin-top: 1rem; border-left: 3px solid #0066cc;">
+                <i class="fas fa-info-circle" style="color:#0066cc"></i> <strong>Info :</strong> Bientôt disponible sur macOS et Linux. Restez connectés !
+            </div>
         </section>
 
-        <!-- Directives principales -->
-        <section id="directives">
-            <h2>🧩 Directives JCSS</h2>
-            <p>Les blocs sont introduits par <code>@</code> suivi du type de directive. Le moteur reconnaît 7 formes principales.</p>
+        <!-- Création d'un projet -->
+        <section id="getting-started">
+            <h2>Premier projet</h2>
+            <p class="section-subhead">Initialisez une nouvelle application JCSS en une commande.</p>
+            <div class="code-block">
+                <pre>mkdir mon-projet && cd mon-projet
+jcss init</pre>
+            </div>
+            <p>Cette commande génère la structure suivante :</p>
+            <div class="code-block">
+                <pre>
+mon-projet/
+├── index.jcss          # point d'entrée principal
+└── modules/
+    ├── README
+    ├── app/            # fichiers générés (HTML, CSS, JS)
+    └── resources/
+        ├── fonts/
+        ├── imports/    # autres fichiers .jcss
+        ├── medias/
+        └── external/
+            ├── css/    # styles externes
+            ├── js/     # scripts externes
+            └── *.html</pre>
+            </div>
+            <p>Le fichier <span class="inline-code">index.jcss</span> est le cœur de votre application. Lancez la compilation avec :</p>
+            <div class="code-block">
+                <pre>jcss init   # exécute directement le code JCSS et lance le mode watch</pre>
+            </div>
+            <p>Le moteur détecte les modifications et recompile automatiquement.</p>
+        </section>
 
-            <h3>1. Directive initiale (obligatoire)</h3>
-            <pre><code>@drc("jcss")              // langue par défaut
-@drc("jcss", "fr")        // avec spécification de langue</code></pre>
-
-            <h3>2. @page — création de page HTML</h3>
-            <pre><code>@page(accueil){
-    body{
-        background: #f4f4f4;
-        & .container {
-            text: "Bienvenue sur JCSS";
-            dimension: 100% 80vh;
-            axe: center center;
-        }
-    }
-}</code></pre>
-            <p>Génère une page HTML complète avec structure DOM et styles intégrés. Le sélecteur <code>&</code> indique l'imbrication.</p>
-
-            <h3>3. @style — feuille de style externe</h3>
-            <pre><code>@style(main){
-    .btn {
-        background: #2e6b3e;
-        padding: 0.5rem 1rem;
-    }
-}</code></pre>
-
-            <h3>4. @script — code JavaScript</h3>
-            <pre><code>@script(app){
-    console.log("JCSS est prêt !");
-    document.querySelector('h1').style.opacity = '1';
-}</code></pre>
-
-            <h3>5. @meta — insertion dans le &lt;head&gt;</h3>
-            <pre><code>@meta(page1){
-    &lt;link href="https://cdn.tailwindcss.com" rel="stylesheet"&gt;
-}</code></pre>
-
-            <h3>6. @function — blocs réutilisables</h3>
-            <pre><code>@function(theme){
-    color: #1e2c3a;
-    font-family: 'Inter';
-}
-
-body{
-    function: theme;
-}</code></pre>
-
-            <h3>7. @import — modularité</h3>
-            <pre><code>@import("./modules/resources/imports/pages.jcss")</code></pre>
-
-            <h3>✨ Extensions CSS uniques</h3>
-            <table class="directive-table">
-                <thead>
-                    <tr><th>Propriété</th><th>Description</th><th>Exemple</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td><code>text</code></td><td>Injecte du contenu textuel dans l'élément</td><td><code>text: "Hello JCSS";</code></td></tr>
-                    <tr><td><code>dimension</code></td><td>Raccourci pour width + height</td><td><code>dimension: 100% 80vh;</code></td></tr>
-                    <tr><td><code>axe</code></td><td>Alignement flex/grid (center start / center center)</td><td><code>axe: center center;</code></td></tr>
-                    <tr><td><code>function</code></td><td>Applique un bloc de style réutilisable</td><td><code>function: fonts_settings;</code></td></tr>
-                </tbody>
-            </table>
+        <!-- Syntaxe et directives -->
+        <section id="syntaxe">
+            <h2>Syntaxe & directives</h2>
+            <p class="section-subhead">JCSS utilise des blocs spécifiques introduits par <span class="inline-code">@</span>. Les 7 directives fondamentales :</p>
+            <div class="directive-grid">
+                <span class="directive-tag">@drc</span>
+                <span class="directive-tag">@page</span>
+                <span class="directive-tag">@style</span>
+                <span class="directive-tag">@script</span>
+                <span class="directive-tag">@meta</span>
+                <span class="directive-tag">@function</span>
+                <span class="directive-tag">@import</span>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <h4><span class="accent-text">@drc</span> — Directive initiale</h4>
+                    <p>Obligatoire, indique que le code est du JCSS et définit la langue (optionnelle). Exemple : <span class="inline-code">@drc("jcss", "fr")</span>.</p>
+                </div>
+                <div class="card">
+                    <h4><span class="accent-text">@page</span> — Création de page</h4>
+                    <p>Génère une page HTML complète. Supporte l’imbrication CSS et le texte direct avec la propriété <span class="inline-code">text</span>.</p>
+                </div>
+                <div class="card">
+                    <h4><span class="accent-text">@style / @script</span></h4>
+                    <p>Injectent des feuilles de style ou scripts JavaScript dans les pages générées.</p>
+                </div>
+                <div class="card">
+                    <h4><span class="accent-text">@meta</span> — Éléments d’en‑tête</h4>
+                    <p>Ajoute du contenu dans le <span class="inline-code">&lt;head&gt;</span> (link, meta, etc.) via un nom de référence.</p>
+                </div>
+                <div class="card">
+                    <h4><span class="accent-text">@function</span> — Fonctions réutilisables</h4>
+                    <p>Définit des blocs de propriétés CSS réutilisables appelés via <span class="inline-code">function: nom;</span>.</p>
+                </div>
+                <div class="card">
+                    <h4><span class="accent-text">@import</span> — Modularité</h4>
+                    <p>Importe d’autres fichiers <span class="inline-code">.jcss</span> depuis <span class="inline-code">resources/imports</span>.</p>
+                </div>
+            </div>
+            <h3>Extensions CSS natives</h3>
+            <div class="grid-3">
+                <div class="card"><i class="fas fa-font"></i> <span class="inline-code">text: "contenu"</span> — injecte du texte dans l’élément.</div>
+                <div class="card"><i class="fas fa-arrows-alt"></i> <span class="inline-code">dimension: 100% 50%</span> — width + height.</div>
+                <div class="card"><i class="fas fa-align-center"></i> <span class="inline-code">axe: center start</span> — combine align & justify.</div>
+                <div class="card"><i class="fas fa-cubes"></i> <span class="inline-code">function: nom</span> — applique un bloc @function.</div>
+            </div>
         </section>
 
         <!-- Workflow développeur -->
         <section id="workflow">
-            <h2>⚙️ Workflow quotidien</h2>
-            <p>JCSS intègre un watcher en temps réel. Aucune commande manuelle à répéter : sauvegardez votre fichier <code>.jcss</code>, la régénération est automatique.</p>
-            <pre><code>jcss init        # lancement du watcher + compilation initiale</code></pre>
-            <p>En cas d’erreur, des messages clairs s’affichent dans le terminal avec localisation et suggestion de correction. Si l’erreur n’est pas encore gérée, le watcher attend la correction.</p>
-            <p>Intégration VS Code : extension disponible (surlignage syntaxique, snippets).</p>
-            <div class="card" style="margin: 1rem 0;">
-                <h3>📁 Structure de sortie</h3>
-                <p>Les fichiers finaux se trouvent dans <code>modules/app/</code> :</p>
-                <pre><code>modules/app/
-├── index.html
-├── login.html
-├── dashboard.html
-├── styles.css
-└── scripts.js</code></pre>
-                <p>Chaque <code>@page</code> génère un fichier HTML distinct.</p>
+            <h2>Workflow développeur</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <i class="fas fa-eye"></i>
+                    <h4>Mode watch automatique</h4>
+                    <p>Lorsque vous lancez <span class="inline-code">jcss init</span>, le moteur reste actif et recompile à chaque modification du fichier <span class="inline-code">index.jcss</span> ou des imports. Les erreurs s’affichent dans la console avec des indications claires.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-bug"></i>
+                    <h4>Gestion des erreurs</h4>
+                    <p>Messages explicites avec localisation et suggestions de correction. En mode session interactive, le programme ne s’arrête pas, il attend la correction.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-code-branch"></i>
+                    <h4>Intégration VS Code</h4>
+                    <p>Extension disponible (syntax highlighting). Le terminal intégré permet de lancer la compilation sans quitter l’éditeur.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h4>Performance</h4>
+                    <p>Moteur rapide, pipeline de transformation déterministe. Idéal pour des itérations rapides.</p>
+                </div>
             </div>
         </section>
 
-        <!-- Exemples concrets -->
-        <section id="examples">
-            <h2>🚀 Exemple complet : Landing page</h2>
-            <p>Créez un fichier <code>index.jcss</code> et collez ce code. Lancez <code>jcss init</code> et observez la magie.</p>
-            <pre><code>@drc("jcss")
+        <!-- Exemple complet -->
+        <section id="exemple">
+            <h2>Exemple concret</h2>
+            <p class="section-subhead">Une page d’accueil simple avec titre, conteneur et message dynamique.</p>
+            <div class="code-block">
+                <pre>@drc("jcss")
 
-@page(landing){
-    html{
-        background: #fefefe;
-        & body {
-            font-family: 'Inter', system-ui;
-            margin: 0;
-            padding: 2rem;
-        }
-        & .hero {
-            dimension: 100% 90vh;
+@function(primaryStyle){
+    color: #1d1d1f;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.125rem;
+}
+
+@page(home){
+    body{
+        function: primaryStyle;
+        background: #f5f5f7;
+        margin: 0;
+        & .hero{
+            dimension: 100% 100vh;
             axe: center center;
-            text-align: center;
-            & h1 {
+            display: flex;
+            flex-direction: column;
+            & h1{
                 text: "Bienvenue sur JCSS";
                 font-size: 3rem;
-                color: #2e6b3e;
+                font-weight: 600;
+                margin-bottom: 1rem;
             }
-            & p {
-                text: "Générez vos pages web sans écrire HTML.";
-                font-size: 1.2rem;
-                margin-top: 1rem;
+            & p{
+                text: "Génération HTML/CSS automatique — zéro redondance.";
+                font-size: 1.25rem;
+                color: #6e6e73;
             }
-            & button {
-                background: #2e6b3e;
-                border: none;
+            & button{
+                text: "Explorer";
+                background: #1d1d1f;
                 color: white;
-                padding: 0.75rem 1.8rem;
-                border-radius: 40px;
-                text: "Commencer";
-                font-weight: bold;
+                border: none;
+                padding: 0.75rem 1.5rem;
+                border-radius: 48px;
                 margin-top: 2rem;
                 cursor: pointer;
             }
@@ -493,117 +604,87 @@ body{
     }
 }
 
-@style(main){
-    button:hover {
-        background: #1f4a2c;
-        transform: scale(1.02);
-    }
-}
-
-@script(app){
-    const btn = document.querySelector('button');
-    if(btn){
-        btn.addEventListener('click', () => {
-            alert('JCSS en action ! 🚀');
-        });
-    }
-}</code></pre>
-
-            <p><strong>Résultat :</strong> une page HTML complète avec styles imbriqués, contenu texte, et interaction JavaScript — sans jamais écrire une balise HTML manuellement.</p>
-
-            <div class="card">
-                <h3>🔁 Exemple multi-pages</h3>
-                <pre><code>@drc("jcss")
-
-@page([home, Index]){
-    body{
-        background: white;
-        & nav { ... }
-        & .card { ... }
-    }
-}
-
-@page([contact, Contact Us], style.css){
-    body{
-        background: #eef2ff;
-        & form { ... }
-    }
-}</code></pre>
-                <p>Génère deux fichiers HTML : <code>home.html</code> et <code>contact.html</code>.</p>
+@script(main){
+    document.querySelector('button')?.addEventListener('click', () => {
+        alert('JCSS en action !');
+    });
+}</pre>
+            </div>
+            <p>Le fichier <span class="inline-code">index.jcss</span> ci-dessus génère une page <span class="inline-code">home.html</span> dans <span class="inline-code">modules/app/</span> avec le style et le comportement JavaScript associés. Aucun HTML écrit manuellement.</p>
+            <div class="card" style="margin-top: 1rem;">
+                <h4>Résultat CSS attendu (extrait)</h4>
+                <div class="code-block" style="background: #f4f7fc; color:#1e2a3a; border-left-color: #0066cc;">
+                    <pre>body { color: #1d1d1f; font-family: 'Inter', sans-serif; background: #f5f5f7; margin: 0; }
+.hero { width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+.hero h1::before { content: "Bienvenue sur JCSS"; }</pre>
+                </div>
             </div>
         </section>
 
-        <!-- Cas d'usage et roadmap -->
+        <!-- Limitations & roadmap -->
         <section>
-            <h2>🎯 Quand utiliser JCSS ?</h2>
+            <h2>État actuel & roadmap</h2>
             <div class="grid-2">
                 <div class="card">
-                    <h3>✅ Idéal pour :</h3>
-                    <ul style="margin-left: 1.2rem; margin-top: 0.5rem;">
-                        <li>Prototypage rapide d’interfaces</li>
-                        <li>Projets frontend sans backend lourd</li>
-                        <li>Développeurs débutants voulant réduire la courbe d’apprentissage</li>
-                        <li>Applications web simples à moyennes</li>
+                    <i class="fas fa-chart-line"></i>
+                    <h4>Limitations actuelles</h4>
+                    <ul style="margin-left: 1.2rem; color: #6e6e73;">
+                        <li>Pas de variables CSS natives (prévues)</li>
+                        <li>Support limité aux sélecteurs complexes (classes, IDs avancés en cours)</li>
+                        <li>Compatibilité macOS/Linux en développement</li>
+                        <li>Frameworks backend non intégrés directement, mais fichiers générés utilisables</li>
                     </ul>
                 </div>
                 <div class="card">
-                    <h3>⚠️ Moins adapté pour :</h3>
-                    <ul style="margin-left: 1.2rem; margin-top: 0.5rem;">
-                        <li>Projets colossaux avec architecture très spécifique</li>
-                        <li>Environnements où l’on ne peut pas installer Node.js</li>
-                        <li>Frameworks complexes (Angular, Laravel) sans intégration directe</li>
+                    <i class="fas fa-road"></i>
+                    <h4>Feuille de route</h4>
+                    <ul style="margin-left: 1.2rem; color: #6e6e73;">
+                        <li>Conditions et boucles dans le langage</li>
+                        <li>Support multi-OS complet</li>
+                        <li>Amélioration du système d’erreurs (100% couvert)</li>
+                        <li>Évolution vers un langage full-stack lisible par navigateur</li>
+                        <li>Variables et mixins avancés</li>
                     </ul>
                 </div>
             </div>
-
-            <h2>📈 Roadmap & évolutions</h2>
-            <ul style="margin-left: 1.5rem;">
-                <li>✔️ Support macOS / Linux (prévu prochainement)</li>
-                <li>✔️ Variables CSS natives et conditions</li>
-                <li>✔️ Gestion des erreurs complète et messages ultra-clairs</li>
-                <li>✔️ Écosystème : extension VS Code enrichie, documentation interactive</li>
-                <li>✔️ Évolution vers un langage fullstack lisible par navigateur</li>
-            </ul>
-        </section>
-
-        <!-- Expérience utilisateur -->
-        <section>
-            <h2>🧑‍💻 Expérience utilisateur</h2>
-            <p>JCSS a été pensé pour une prise en main ultra-rapide. La syntaxe reprend les bases du CSS, et l'imbrication reflète naturellement la hiérarchie du DOM. La plupart des développeurs se sentent opérationnels en moins d'une heure.</p>
-            <p><strong>Feedback initial :</strong> “La directive @page élimine le besoin d'écrire des squelettes HTML, c'est libérateur.” — “Les propriétés comme <code>dimension</code> et <code>axe</code> accélèrent le layout moderne.”</p>
-            <div class="toc">
-                💡 <strong>Bon à savoir :</strong> vous pouvez intégrer n’importe quelle bibliothèque CSS (Bootstrap, Tailwind) via <code>@meta</code> et utiliser les classes avec le sélecteur d’attribut en JCSS.
+            <div class="card" style="background: linear-gradient(120deg, #f9fdfe, #ffffff);">
+                <i class="fas fa-graduation-cap" style="background: none; -webkit-background-clip: unset; color:#0066cc"></i>
+                <h4>Expérience utilisateur</h4>
+                <p>Apprentissage très rapide (~1h pour être opérationnel). Syntaxe familière pour les développeurs CSS. La courbe d’adoption est douce grâce à l’unification structure/style et aux retours explicites du compilateur.</p>
             </div>
         </section>
 
-        <!-- Conclusion et liens -->
-        <section style="margin-top: 3rem;">
-            <div class="card" style="background: var(--primary-light); text-align: center;">
-                <h3 style="margin-top: 0;">Prêt à coder sans HTML ?</h3>
-                <p style="margin-bottom: 1rem;">Installez JCSS et créez votre premier fichier .jcss dès maintenant.</p>
-                <pre style="background: #1e2c3a; display: inline-block; text-align: left; margin: 0 auto;">npm install -g @rufus_lokuma/jcss && jcss init</pre>
-                <p style="margin-top: 1rem;">📘 <a href="#">Documentation complète (PDF)</a> · 🧪 <a href="#">Essayer JCSS en ligne (bientôt)</a> · 🐛 <a href="#">Signaler un bug</a></p>
+        <!-- Cas d'usage -->
+        <section>
+            <h2>Cas d’usage</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <i class="fas fa-check-circle" style="color:#2c7a4d"></i>
+                    <h4>Idéal pour</h4>
+                    <p>Prototypage rapide, projets front-end indépendants, développeurs débutants souhaitant éviter la complexité HTML/CSS, équipes cherchant à réduire la dette de style.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-ban" style="color:#b91c1c"></i>
+                    <h4>À éviter pour</h4>
+                    <p>Applications très complexes avec architecture backend lourd, si vous avez besoin de contrôle granulaire sur chaque balise HTML, ou dans des environnements sans Node.js.</p>
+                </div>
+            </div>
+            <div class="card">
+                <h4><i class="fas fa-puzzle-piece"></i> Intégration dans des projets existants</h4>
+                <p>Vous pouvez utiliser JCSS pour générer les pages puis les récupérer depuis le dossier <span class="inline-code">modules/app</span> pour les intégrer dans Laravel, React ou tout autre framework. Le CSS/JS généré est standard et immédiatement exploitable.</p>
             </div>
         </section>
     </div>
 
     <footer>
-        <p>JCSS — Open source · DSL inspiré du CSS pour un frontend unifié<br>© 2025 — Projet porté par Rufus Lokuma & contributeurs</p>
+        <div class="container">
+            <p>JCSS — Just Coding with Stylesheet Structure · DSL open-source · Documentation officielle v1.0</p>
+            <p style="margin-top: 0.75rem;">
+                <i class="fab fa-github"></i> <a href="#" style="color: #0066cc; text-decoration: none;">Contribuer sur GitHub</a> · 
+                Maintenu par Rufus Lokuma · MIT License · 
+                <i class="fas fa-terminal"></i> npm install -g @rufus_lokuma/jcss
+            </p>
+        </div>
     </footer>
-
-    <script>
-        // smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-                if(targetId === "#") return;
-                const target = document.querySelector(targetId);
-                if(target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-    </script>
 </body>
 </html>
